@@ -1,36 +1,21 @@
 package com.lead.dell.movies.entities;
-<<<<<<< HEAD
-
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
-=======
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
->>>>>>> 33cdee9563f43703479b83c5d3656206f964f83f
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 
-<<<<<<< HEAD
-
 
 @Entity 
 @Table (name="users", uniqueConstraints= {
 		@UniqueConstraint(columnNames= {"cpf","email"})
 })
-=======
-@Entity
-@Table(name="USER")
->>>>>>> 33cdee9563f43703479b83c5d3656206f964f83f
 	
 	public class User implements Serializable{
 
@@ -38,7 +23,6 @@ import javax.persistence.GeneratedValue;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-<<<<<<< HEAD
 	private Long id;
 	
 	@NotEmpty
@@ -50,19 +34,6 @@ import javax.persistence.GeneratedValue;
 	@Column(unique = true, nullable = false)
 	private String phone_number;
 	
-	@Column(unique = true, nullable = false)
-=======
-	
-	private Long id;
-	
-	private String name;
-	
-	private String cpf;
-	
-	@Column(name = "phone_number")
-	private String phone_number;
-	
->>>>>>> 33cdee9563f43703479b83c5d3656206f964f83f
 	private String email;
 	
 	private String password;
@@ -72,21 +43,11 @@ import javax.persistence.GeneratedValue;
 	@ManyToOne
 	@JoinColumn(name = "language_id")
 	private Language language;
-<<<<<<< HEAD
-	
-	
-=======
 
->>>>>>> 33cdee9563f43703479b83c5d3656206f964f83f
 	public Long getId() {
 		return id;
 	}
-
-<<<<<<< HEAD
-	public void setId(long id) {
-=======
 	public void setId(Long id) {
->>>>>>> 33cdee9563f43703479b83c5d3656206f964f83f
 		this.id = id;
 	}
 
