@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 
 @Entity
+<<<<<<< HEAD
+@Table(name="language")
+=======
 @Table(name="LANGUAGE")
+>>>>>>> 33cdee9563f43703479b83c5d3656206f964f83f
 	public class Language  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
