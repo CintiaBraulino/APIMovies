@@ -47,4 +47,9 @@ public class UserController {
 	public User updateUser(@RequestBody User user) {
 		return userService.UserupdateUser(user);
 	}
+	
+	@PutMapping("/deleteUser")				//seta usuario para false 
+	public User deleteUser(@RequestBody User user) {
+		return userService.deleteUser(user);
+	}
 }

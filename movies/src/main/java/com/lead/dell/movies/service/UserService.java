@@ -55,5 +55,8 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-
+	public User deleteUser(User user) {		//seta usuario para false 
+		user.setActivite(false);
+		return user;
+	}
 }
