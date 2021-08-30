@@ -1,4 +1,5 @@
 package com.lead.dell.movies.entities;
+
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,17 +29,23 @@ import javax.persistence.GeneratedValue;
 	@NotEmpty
 	private String name;
 	
+	@NotEmpty
 	@Column(unique = true, nullable = false)
 	private String cpf;
 	
+	@NotEmpty
 	@Column(unique = true, nullable = false)
 	private String phone_number;
 	
+	@NotEmpty
+	@Column(unique = true, nullable = false)
 	private String email;
 	
 	private String password;
 	
 	private String profile;
+	
+	private boolean activite = true;
 	
 	@ManyToOne
 	@JoinColumn(name = "language_id")
@@ -106,5 +113,11 @@ import javax.persistence.GeneratedValue;
 	public void setLanguage(Language language) {
 		this.language = language;
 	}
-
+	public boolean isActivite() {
+		return activite;
+	}
+	public void setActivite(boolean activite) {
+		this.activite = activite;
+	}
+	
 }

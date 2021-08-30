@@ -1,7 +1,6 @@
 package com.lead.dell.movies.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
@@ -21,7 +20,6 @@ import javax.persistence.GeneratedValue;
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	
 	private String name;
 	
 	private String tag;

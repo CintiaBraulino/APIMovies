@@ -37,13 +37,11 @@ import javax.persistence.GeneratedValue;
 		@ManyToOne
 		@JoinColumn(name = "language_id")
 		private Language language;
-/*
-		@ManyToOne
+
+/*		@ManyToOne
 		@JoinColumn(name = "category_id")
 		private Category category;
-*/		
-
-
+*/
 		public Long getId() {
 			return id;
 		}
@@ -98,16 +96,8 @@ import javax.persistence.GeneratedValue;
 
 		public void setLanguage(Language language) {
 			this.language = language;
-		}		
-	
-/*
-		public Category getCategory() {
-			return category;
 		}
 
-		public void setCategory(Category category) {
-			this.category = category;
-		}	*/	
-		
+	
 }			
 	
