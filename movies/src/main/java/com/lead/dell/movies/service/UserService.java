@@ -57,6 +57,15 @@ public class UserService {
 	
 	public User deleteUser(User user) {		//seta usuario para false 
 		user.setActivite(false);
-		return user;
+		userRepository.save(user);
+		UserResponse data = new UserResponse();
+		data.setMessage("Usuario deletado!");
+		return UserResponse(data, HttpStatus.OK);
+	}
+
+	private User UserResponse(UserResponse data, HttpStatus ok) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
+
