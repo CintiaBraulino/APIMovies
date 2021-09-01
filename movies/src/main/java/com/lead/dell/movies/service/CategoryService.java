@@ -36,7 +36,7 @@ public class CategoryService {
 		return categoryRepository.findById(id);
 	}
 	
-	public Category CategoryUpdate(@RequestBody Category category) {		// Atualiza uma informacao da categoria
+	public Category categoryUpdate(@RequestBody Category category) {		// Atualiza uma informacao da categoria
 		return categoryRepository.save(category);
 	}
 	

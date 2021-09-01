@@ -44,7 +44,7 @@ public class CategoryController {
 	
 	@PutMapping("/updateCategory")		// Atualiza uma informacao da categoria
 	public Category updateCategory(@RequestBody Category category) {
-		return categoryService.CategoryUpdate(category);
+		return categoryService.categoryUpdate(category);
 	}
 	
 	@PutMapping("/deleteCategory")		//seta categoria para false

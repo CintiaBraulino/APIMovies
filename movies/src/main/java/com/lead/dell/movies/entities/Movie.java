@@ -2,8 +2,10 @@ package com.lead.dell.movies.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,8 @@ import javax.persistence.GeneratedValue;
 		
 		private Long id;
 		
+		@NotEmpty
+		@Column(unique = true, nullable = false)
 		private String title;
 		
 		private String synopsis;
@@ -41,6 +45,8 @@ import javax.persistence.GeneratedValue;
 		@ManyToOne
 		@JoinColumn(name = "categoryId")
 		private Category category;
+		
+		private boolean active = true;
 
 		public Long getId() {
 			return id;
@@ -104,6 +110,14 @@ import javax.persistence.GeneratedValue;
 
 		public void setCategory(Category category) {
 			this.category = category;
+		}
+
+		public boolean isActive() {
+			return active;
+		}
+
+		public void setActive(boolean active) {
+			this.active = active;
 		}
 
 }			
