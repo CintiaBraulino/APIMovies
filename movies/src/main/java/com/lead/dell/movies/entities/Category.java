@@ -18,8 +18,8 @@ import javax.persistence.GeneratedValue;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-
+	private Long id; 
+	
 	private String name;
 	
 	private String tag;
@@ -28,7 +28,6 @@ import javax.persistence.GeneratedValue;
 	@JoinColumn(name = "language_id")
 	private Language language;
 
-
 	public Long getId() {
 		return id;
 	}
@@ -36,6 +35,7 @@ import javax.persistence.GeneratedValue;
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -51,15 +51,5 @@ import javax.persistence.GeneratedValue;
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
-	public Language getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(Language language) {
-		this.language = language;
-	}
-
 	
 }
-

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 
 @Entity
-@Table(name="Movies")
+@Table(name="movies")
 
 	public class Movie implements Serializable {
 
@@ -29,19 +29,19 @@ import javax.persistence.GeneratedValue;
 		
 		private String image;
 		
-
 		@DateTimeFormat(pattern = "dd/MM/yyyy")
-		private LocalDate releaseDate;	
+		private LocalDate releaseDate;
+		
 		private String duration;
 			
 		@ManyToOne
 		@JoinColumn(name = "language_id")
 		private Language language;
-
-/*		@ManyToOne
-		@JoinColumn(name = "category_id")
+		
+		@ManyToOne
+		@JoinColumn(name = "categoryId")
 		private Category category;
-*/
+
 		public Long getId() {
 			return id;
 		}
@@ -98,6 +98,13 @@ import javax.persistence.GeneratedValue;
 			this.language = language;
 		}
 
-	
+		public Category getCategory() {
+			return category;
+		}
+
+		public void setCategory(Category category) {
+			this.category = category;
+		}
+
 }			
 	
