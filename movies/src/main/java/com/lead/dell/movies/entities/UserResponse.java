@@ -1,28 +1,26 @@
 package com.lead.dell.movies.entities;
 
-public class UserResponse {
+public class UserResponse{
 	
 	private User user;
 	private String message;
 	
-	
-	public UserResponse() {
-		
+	public UserResponse(){	
 	}
-
-	public User getUser() {
+	
+	public User getUser(){
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user){
 		this.user = user;
 	}
 
-	public String getMessage() {
+	public String getMessage(){
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public void setMessage(String message){
 		this.message = message;
 	}
 }

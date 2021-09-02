@@ -15,7 +15,6 @@ import com.lead.dell.movies.entities.Movie;
 import com.lead.dell.movies.repository.MovieRepository;
 import com.lead.dell.movies.service.MovieService;
 
-
 @RestController
 @RequestMapping(value="/movie")
 public class MovieController {
@@ -41,14 +40,13 @@ public class MovieController {
 		return movieService.listMovie(id);
 	}
 	
-	@PutMapping("/updateMovie")		// Atualiza uma informacao do movie
-	public Movie updateMovie(@RequestBody Movie movie) {
+	@PutMapping("/updateMovie")			// Atualiza uma informacao do movie
+	public Movie updateMovie(@RequestBody Movie movie){
 		return movieService.movieUpdate(movie);
 	}
 	
-	@PutMapping("/deleteMovie")		//seta movie para false
+	@PutMapping("/deleteMovie")			//seta movie para false
 	public Movie deleteMovie(@RequestBody Movie movie){
 		return movieService.deleteMovie(movie);
-	}
-	
+	}	
 }

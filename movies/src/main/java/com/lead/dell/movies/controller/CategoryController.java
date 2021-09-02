@@ -18,7 +18,6 @@ import com.lead.dell.movies.service.CategoryService;
 
 @RestController
 @RequestMapping(value="/category")
-
 public class CategoryController {
 	
 	@Autowired
@@ -43,13 +42,12 @@ public class CategoryController {
 	}
 	
 	@PutMapping("/updateCategory")		// Atualiza uma informacao da categoria
-	public Category updateCategory(@RequestBody Category category) {
+	public Category updateCategory(@RequestBody Category category){
 		return categoryService.categoryUpdate(category);
 	}
 	
 	@PutMapping("/deleteCategory")		//seta categoria para false
-	public Category deleteCategory(@RequestBody Category category) {
+	public Category deleteCategory(@RequestBody Category category){
 		return categoryService.deleteCategory(category);
 	}
-
 }
