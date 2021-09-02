@@ -14,70 +14,66 @@ import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 
 @Entity
-@Table(name="category",uniqueConstraints= {
-		@UniqueConstraint(columnNames= {"name","tag"})
-		})
+@Table(name="category",uniqueConstraints= {@UniqueConstraint(columnNames= {"name","tag"})})
+public class Category implements Serializable{
 
-	public class Category implements Serializable{
-
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
-		@Id
-		@GeneratedValue(strategy=GenerationType.AUTO)
-		private Long id; 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id; 
 		
-		@NotEmpty
-		@Column(unique = true, nullable = false)
-		private String name;
+	@NotEmpty
+	@Column(unique = true, nullable = false)
+	private String name;
 		
-		@NotEmpty
-		@Column(unique = true, nullable = false)
-		private String tag;
+	@NotEmpty
+	@Column(unique = true, nullable = false)
+	private String tag;
 	
-		@ManyToOne
-		@JoinColumn(name = "language_id")
-		private Language language;
+	@ManyToOne
+	@JoinColumn(name = "language_id")
+	private Language language;
 	
-		private boolean active = true;
+	private boolean active = true;
 
-		public Long getId(){
-			return id;
-		}
+	public Long getId(){
+		return id;
+	}
 
-		public void setId(Long id){
-			this.id = id;
-		}
+	public void setId(Long id){
+		this.id = id;
+	}
 
-		public String getName(){
-			return name;
-		}
+	public String getName(){
+		return name;
+	}
 
-		public void setName(String name){
-			this.name = name;
-		}
+	public void setName(String name){
+		this.name = name;
+	}
 
-		public String getTag() {
-			return tag;
-		}
+	public String getTag(){
+		return tag;
+	}
 
-		public void setTag(String tag){
-			this.tag = tag;
-		}
+	public void setTag(String tag){
+		this.tag = tag;
+	}
 		
-		public Language getLanguage() {
-			return language;
-		}
+	public Language getLanguage(){
+		return language;
+	}
 
-		public void setLanguage(Language language){
-			this.language = language;
-		}
+	public void setLanguage(Language language){
+		this.language = language;
+	}
 
-		public boolean isActive() {
-			return active;
-		}
+	public boolean isActive(){
+		return active;
+	}
 
-		public void setActive(boolean active) {
-			this.active = active;
-		}
-	
+	public void setActive(boolean active){
+		this.active = active;
+	}	
 }

@@ -15,18 +15,16 @@ import com.lead.dell.movies.entities.UserResponse;
 import com.lead.dell.movies.repository.UserRepository;
 import com.lead.dell.movies.service.UserService;
 
-
 @RestController
 @RequestMapping(value="/api")
-
 public class UserController {
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	private UserService userService;	
-	
+
 	@GetMapping() 							//Lista todos os usuarios
 	public List<User> getAllUsers(){
 		return userService.findAll();
@@ -37,19 +35,18 @@ public class UserController {
 		return userService.createUser(user);
 	}
 	
-	
 	@GetMapping("/listUser/{id}") 			// Lista os usuarios de acordo com o ID
-	public java.util.Optional<User> listUsers(@PathVariable(value = "id")long id) {
+	public java.util.Optional<User> listUsers(@PathVariable(value = "id")long id){
 	  return userService.listUsers(id);
 	}
 
 	@PutMapping("/updateUser")				// Atualiza a informacao do usuario
-	public User updateUser(@RequestBody User user) {
+	public User updateUser(@RequestBody User user){
 		return userService.UserupdateUser(user);
 	}
 	
 	@PutMapping("/deleteUser")				//seta usuario para false 
-	public User deleteUser(@RequestBody User user) {
+	public User deleteUser(@RequestBody User user){
 		return userService.deleteUser(user);
 	}
 }

@@ -15,110 +15,107 @@ import javax.persistence.GeneratedValue;
 
 @Entity
 @Table(name="movies")
+public class Movie implements Serializable {
 
-	public class Movie implements Serializable {
-
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 		
-		@Id
-		@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 		
-		private Long id;
+	private Long id;
 		
-		@NotEmpty
-		@Column(unique = true, nullable = false)
-		private String title;
+	@NotEmpty
+	@Column(unique = true, nullable = false)
+	private String title;
 		
-		private String synopsis;
+	private String synopsis;
 		
-		private String image;
+	private String image;
 		
-		@DateTimeFormat(pattern = "dd/MM/yyyy")
-		private LocalDate releaseDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private LocalDate releaseDate;
 		
-		private String duration;
+	private String duration;
 			
-		@ManyToOne
-		@JoinColumn(name = "language_id")
-		private Language language;
+	@ManyToOne
+	@JoinColumn(name = "language_id")
+	private Language language;
 		
-		@ManyToOne
-		@JoinColumn(name = "categoryId")
-		private Category category;
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
 		
-		private boolean active = true;
+	private boolean active = true;
 
-		public Long getId() {
-			return id;
-		}
+	public Long getId(){
+		return id;
+	}
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	public void setId(Long id){
+		this.id = id;
+	}
 
-		public String getTitle() {
-			return title;
-		}
+	public String getTitle(){
+		return title;
+	}
 
-		public void setTitle(String title) {
-			this.title = title;
-		}
+	public void setTitle(String title){
+		this.title = title;
+	}
 
-		public String getSynopsis() {
-			return synopsis;
-		}
+	public String getSynopsis(){
+		return synopsis;
+	}
 
-		public void setSynopsis(String synopsis) {
-			this.synopsis = synopsis;
-		}
+	public void setSynopsis(String synopsis){
+		this.synopsis = synopsis;
+	}
 
-		public String getImage() {
-			return image;
-		}
+	public String getImage(){
+		return image;
+	}
 
-		public void setImage(String image) {
-			this.image = image;
-		}
+	public void setImage(String image){
+		this.image = image;
+	}
 
-		public LocalDate getReleaseDate() {
-			return releaseDate;
-		}
+	public LocalDate getReleaseDate(){
+		return releaseDate;
+	}
 
-		public void setReleaseDate(LocalDate releaseDate) {
-			this.releaseDate = releaseDate;
-		}
+	public void setReleaseDate(LocalDate releaseDate){
+		this.releaseDate = releaseDate;
+	}
 
-		public String getDuration() {
-			return duration;
-		}
+	public String getDuration(){
+		return duration;
+	}
 
-		public void setDuration(String duration) {
-			this.duration = duration;
-		}
+	public void setDuration(String duration){
+		this.duration = duration;
+	}
 
-		public Language getLanguage() {
-			return language;
-		}
+	public Language getLanguage(){
+		return language;
+	}
 
-		public void setLanguage(Language language) {
-			this.language = language;
-		}
+	public void setLanguage(Language language){
+		this.language = language;
+	}
 
-		public Category getCategory() {
-			return category;
-		}
+	public Category getCategory() {
+		return category;
+	}
 
-		public void setCategory(Category category) {
-			this.category = category;
-		}
+	public void setCategory(Category category){
+		this.category = category;
+	}
 
-		public boolean isActive() {
-			return active;
-		}
+	public boolean isActive(){
+		return active;
+	}
 
-		public void setActive(boolean active) {
-			this.active = active;
-		}
-
+	public void setActive(boolean active){
+		this.active = active;
+	}
 }			
-	

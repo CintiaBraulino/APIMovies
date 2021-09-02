@@ -18,31 +18,30 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
-	public List<Category> findAll(){	//Lista todas categorias
+	public List<Category> findAll(){		//Lista todas categorias
 		return categoryRepository.findByActive(true);	
 	}
 	
-	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category){		// Salva e cria uma categoria porem verifica se ja tem um nome cadastrado!!
+	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category){			// Salva e cria uma categoria porem verifica se ja tem um nome cadastrado!!
 		Optional<Category> name = categoryRepository.findByName(category.getName());
 		if (name.isPresent()){
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		} else {
+		} else{
 			categoryRepository.save(category);
 			return new ResponseEntity<>(HttpStatus.CREATED);	
 		}
 	}
 	
-	public Optional<Category> listCategory(@PathVariable(value="id")long id){		// Lista as categorias de acordo com o ID
+	public Optional<Category> listCategory(@PathVariable(value="id")long id){			// Lista as categorias de acordo com o ID
 		return categoryRepository.findById(id);
 	}
 	
-	public Category categoryUpdate(@RequestBody Category category) {		// Atualiza uma informacao da categoria
+	public Category categoryUpdate(@RequestBody Category category){			// Atualiza uma informacao da categoria
 		return categoryRepository.save(category);
 	}
 	
-	public Category deleteCategory(Category category) {			//seta categoria para false 
+	public Category deleteCategory(Category category){				//seta categoria para false 
 		category.setActive(false);
 		return categoryRepository.save(category);
 	}
-
 }

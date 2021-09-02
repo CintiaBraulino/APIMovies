@@ -19,26 +19,25 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-
-	public List<User> findAll(){	//Lista todos os usuarios
+	public List<User> findAll(){		//Lista todos os usuarios
 			return userRepository.findByActivite(true);	
 	}
 	
-	public ResponseEntity<UserResponse> createUser(@Valid @RequestBody User user){	// Salva e cria o usuario porem verifica se ja tem cadastro com o email e cpf!!
+	public ResponseEntity<UserResponse> createUser(@Valid @RequestBody User user){			// Salva e cria o usuario porem verifica se ja tem cadastro com o email e cpf!!
 	    Optional<User> cpf = userRepository.findUsertByCpf(user.getCpf());
 	    Optional<User> email = userRepository.findUserByEmail(user.getEmail());
 	    UserResponse data = new UserResponse();
 	    if(cpf.isPresent() || email.isPresent()){
-	        if (cpf.isPresent() && email.isPresent()) {
+	        if (cpf.isPresent() && email.isPresent()){
 	        	data.setMessage("E-mail is required and must be unique. " +
 	               "CPF is required and must be unique");
-	        } else if(email.isEmpty()) {
+	        } else if(email.isEmpty()){
 	           data.setMessage("CPF is required and must be unique");
-	        } else {
+	        } else{
 	           data.setMessage("E-mail is required and must be unique.");
 	        }
 	      return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-	     }
+	    }
 	    else{
 	        var newUser = userRepository.save(user);
 	        data.setUser(newUser);
@@ -47,15 +46,15 @@ public class UserService {
 	    }
 	}
 	
-	public Optional<User> listUsers(@PathVariable(value = "id")long id){	// Lista os usuarios de acordo com o ID
+	public Optional<User> listUsers(@PathVariable(value = "id")long id){		// Lista os usuarios de acordo com o ID
 		  return userRepository.findById(id);
-		}
+	}
 	
-	public User UserupdateUser(@RequestBody User user){		// Atualiza a informacao do usuario
+	public User UserupdateUser(@RequestBody User user){			// Atualiza a informacao do usuario
 		return userRepository.save(user);
 	}
 	
-	public User deleteUser(User user) {		//seta usuario para false 
+	public User deleteUser(User user){			//seta usuario para false 
 		user.setActivite(false);
 		userRepository.save(user);
 		return user;

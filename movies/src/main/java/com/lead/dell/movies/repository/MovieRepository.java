@@ -11,6 +11,5 @@ public interface MovieRepository extends JpaRepository<Movie, Long>{
 	
 	Optional <Movie> findByTitle(String title);
 	Optional <Movie> findById(long id);
-	List<Movie> findByActive(boolean active);
-	
+	List<Movie> findByActive(boolean active);	
 }
