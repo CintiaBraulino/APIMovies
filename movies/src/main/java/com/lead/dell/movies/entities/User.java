@@ -1,15 +1,12 @@
 package com.lead.dell.movies.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,7 +17,7 @@ import javax.persistence.GeneratedValue;
 
 @Entity 
 @Table (name="users", uniqueConstraints= {@UniqueConstraint(columnNames= {"cpf","email"})})	
-public class User implements UserDetails,Serializable{
+public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -43,7 +40,7 @@ public class User implements UserDetails,Serializable{
 	@Column(unique = true, nullable = false)
 	private String email;
 	
-	private String password1;
+	private String password;
 	
 	@ManyToMany
 	@JoinTable(name = "user_Profiles", joinColumns = @JoinColumn(
@@ -98,12 +95,12 @@ public class User implements UserDetails,Serializable{
 		this.email = email;
 	}
 
-	public String getPassword1(){
-		return password1;
+	public String getPassword(){
+		return password;
 	}
 
-	public void setPassword1(String password){
-		this.password1 = password;
+	public void setPassword(String password){
+		this.password = password;
 	}
 
 	public List<Profile> getProfile() {
@@ -125,42 +122,6 @@ public class User implements UserDetails,Serializable{
 	}
 	public void setActivite(boolean activite){
 		this.activite = activite;
-	}
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.password1;
-		}
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.name;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
 	}
 	
 }
