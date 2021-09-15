@@ -3,6 +3,7 @@ package com.lead.dell.movies.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,8 @@ public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	private PasswordEncoder encoder;
 
 	@Autowired
 	private UserService userService;	
@@ -32,6 +35,7 @@ public class UserController {
 	
 	@PostMapping("/registerUser") 			// Salva e cria o usuario porem verifica se ja tem cadastro com o email e cpf!!
 	public ResponseEntity<UserResponse> saveUser(@RequestBody User user){
+		user.setPassword(encoder.encode(user.getPassword()));
 		return userService.createUser(user);
 	}
 	
@@ -42,6 +46,7 @@ public class UserController {
 
 	@PutMapping("/updateUser")				// Atualiza a informacao do usuario
 	public User updateUser(@RequestBody User user){
+		user.setPassword(encoder.encode(user.getPassword()));
 		return userService.UserupdateUser(user);
 	}
 	
