@@ -123,5 +123,4 @@ public class User implements Serializable{
 	public void setActivite(boolean activite){
 		this.activite = activite;
 	}
-	
 }
