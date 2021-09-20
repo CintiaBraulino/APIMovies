@@ -1,60 +1,68 @@
 package com.lead.dell.movies.configurations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import com.lead.dell.movies.validations.ImplementsUserDetailsService;
-import com.lead.dell.movies.validations.JWTValidaFilter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import com.lead.dell.movies.repository.UserRepository;
+import com.lead.dell.movies.service.AuthenticateService;
+import com.lead.dell.movies.service.TokenService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private AuthenticateService authenticateService;
 	
-	private ImplementsUserDetailsService userDtService;
-    private  PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private TokenService tokenService;
+	
 
-    public SecurityConfig(ImplementsUserDetailsService userDtService, PasswordEncoder passwordEncoder) {
-        this.userDtService = userDtService;
-        this.passwordEncoder = passwordEncoder;
-    }
+	@Override
+	@Bean
+	protected AuthenticationManager authenticationManager() throws Exception {
+			return super.authenticationManager();
+		}
+	 
+	//Configuracoes de autenticacao
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(authenticateService).passwordEncoder(new BCryptPasswordEncoder());
+	}
+	
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDtService).passwordEncoder(passwordEncoder);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-        		.antMatchers(HttpMethod.GET, "/api/listUser/{id}").permitAll()
-        		.antMatchers(HttpMethod.GET, "/api").permitAll()
-        		.antMatchers(HttpMethod.POST, "/api/salvar").permitAll()
-        		.antMatchers(HttpMethod.POST, "api/registerUser").hasRole("ADMIN")
-        		.anyRequest().authenticated()
-                .and()
-                .formLogin().disable()
-        		.httpBasic().disable()
-                .addFilter(new JWTAuthenticateFilter(authenticationManager()))
-                .addFilter(new JWTValidaFilter(authenticationManager()))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
-    }
-
+	//Configuracoes de autorizacao
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+		.antMatchers(HttpMethod.GET,"/api").permitAll()
+		.antMatchers(HttpMethod.GET,"/api/listUser/*").permitAll()
+		.antMatchers(HttpMethod.PUT,"/api/updateUser").permitAll()
+		.antMatchers(HttpMethod.POST,"/auth").permitAll()
+		.anyRequest().authenticated()
+		.and().csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and().addFilterBefore(new AuthenticateTokenFilter(tokenService, userRepository), UsernamePasswordAuthenticationFilter.class);
+		}
+	
+	
+	//Configuracoes de recursos estaticos(js, css, imagens, etc.)
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	}
+	
+	
 }

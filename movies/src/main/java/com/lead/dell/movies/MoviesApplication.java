@@ -1,23 +1,14 @@
 package com.lead.dell.movies;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class MoviesApplication {
 
 	//inicia o projeto
 	public static void main(String[] args) {
 		SpringApplication.run(MoviesApplication.class, args);
-		
-			
-		}
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder;
 	}
 }
