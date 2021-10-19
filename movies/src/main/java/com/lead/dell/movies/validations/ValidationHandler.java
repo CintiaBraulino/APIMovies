@@ -1,5 +1,5 @@
 package com.lead.dell.movies.validations;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.lead.dell.movies.Dto.ErroFormDto;
+import com.lead.dell.movies.DTO.ErroFormDto;
 
 @RestControllerAdvice
 public class ValidationHandler {
@@ -35,3 +35,4 @@ public class ValidationHandler {
 	}
 
 }
+*/

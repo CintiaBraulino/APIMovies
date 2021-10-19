@@ -9,9 +9,11 @@ import com.lead.dell.movies.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository <User, Long>{
 	
-	public Optional<User> findByEmail(String email);
+	Optional<User> findByEmail(String email);
 	Optional<User> findUsertByCpf(String cpf);
 	Optional<User> findUserByEmail(String email);
 	Optional <User> findById(long id);
 	List<User> findByActivite(boolean activite);
+	Optional<User> findById(Integer id);
+	User save(User user);
 }
