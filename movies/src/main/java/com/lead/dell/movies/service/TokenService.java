@@ -1,9 +1,11 @@
 package com.lead.dell.movies.service;
 
-import org.springframework.stereotype.Service;
 import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
 import com.lead.dell.movies.entities.User;
 
 import io.jsonwebtoken.Claims;
@@ -19,16 +21,16 @@ public class TokenService {
 	@Value("${spring.jwt.secret}")
 	private String secret;
 	
-
 	public String gerarToken(Authentication authentication) {
-		User login  = (User) authentication.getPrincipal();
+		User logado = (User) authentication.getPrincipal();
 		Date today = new Date();
-		Date dateExpiration = new Date(today.getTime()+ Long.parseLong(expiration));
+		Date dataExpiracao = new Date(today.getTime()+ Long.parseLong(expiration));
+		
 		return Jwts.builder()
-				.setIssuer("APIMovie")
-				.setSubject(login.getId().toString())
+				.setIssuer("ApiMovie")
+				.setSubject(logado.getId().toString())
 				.setIssuedAt(today)
-				.setExpiration(dateExpiration)
+				.setExpiration(dataExpiracao)
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
@@ -37,14 +39,16 @@ public class TokenService {
 		try {
 			Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
 			return true;
-		} catch (Exception e) {
+		}catch(Exception e) {
 			return false;
 		}
 	}
 
+
 	public Long getIdUser(String token) {
 		Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
-		return Long.parseLong(claims.getSubject());
+	return Long.parseLong(claims.getSubject());
 	}
+
 
 }
