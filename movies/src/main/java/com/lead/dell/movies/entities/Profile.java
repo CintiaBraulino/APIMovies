@@ -3,7 +3,6 @@ package com.lead.dell.movies.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
